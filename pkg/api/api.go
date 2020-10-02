@@ -440,5 +440,8 @@ func (hs *HTTPServer) registerRoutes() {
 	r.Get("/api/health", hs.apiHealthHandler)
 	r.Get("/healthz", hs.healthzHandler)
 
+	// Frontend logs
+	r.Post("/log_frontend", Wrap(hs.LogFrontendMessage))
+
 	r.Get("/*", reqSignedIn, hs.Index)
 }
